@@ -1,3 +1,5 @@
+import random
+
 __author__ = 'philippe'
 from Tkinter import *
 master = Tk()
@@ -5,15 +7,16 @@ master = Tk()
 triangle_size = 0.1
 cell_score_min = -0.2
 cell_score_max = 0.2
-Width = 100
-(x, y) = (5, 5)
+Width = 12
+(x, y) = (12, 12)
+#~ (x, y) = (5, 5)
 actions = ["up", "down", "left", "right"]
 
 board = Canvas(master, width=x*Width, height=y*Width)
 player = (0, y-1)
 score = 1
 restart = False
-walk_reward = -0.04
+walk_reward = -0.02
 
 walls = [(1, 1), (1, 2), (2, 1), (2, 2)]
 specials = [(4, 1, "red", -1), (4, 0, "green", 1)]
@@ -98,8 +101,13 @@ def try_move(dx, dy):
 
 
 def call_up(event):
-    try_move(0, -1)
-
+    global walls
+    if random.choice([0,1,2,3]) == 1:
+        try_move(0, -1)
+        walls[0] = (1,random.choice([0,1,2,3]))
+        render_grid()
+    else:
+        try_move(-1, 0)
 
 def call_down(event):
     try_move(0, 1)

@@ -3,7 +3,7 @@ import World
 import threading
 import time
 
-discount = 0.3
+discount = 0.1
 actions = World.actions
 states = []
 Q = {}
@@ -84,7 +84,7 @@ def run():
         alpha = pow(t, -0.1)
 
         # MODIFY THIS SLEEP IF THE GAME IS GOING TOO FAST.
-        time.sleep(0.1)
+        time.sleep(0.0005)
 
 
 t = threading.Thread(target=run)
